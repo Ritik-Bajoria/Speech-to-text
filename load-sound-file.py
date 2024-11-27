@@ -1,9 +1,11 @@
-from pydub import AudioSegment
 from tkinter import Tk, filedialog
-from pydub.utils import which
-ffmpeg_path = which("ffmpeg")
-ffprobe_path = which("ffprobe")
+import sys
+import os
+import whisper
 
+
+# Load the Whisper model
+model = whisper.load_model("base") 
 # Function to let the user select an audio file
 def select_audio_file():
     # Hide the root tkinter window
@@ -27,12 +29,11 @@ if __name__ == "__main__":
     file_path = select_audio_file()
 
     if file_path:
-        try:
-            # Load the selected audio file
-            audio = AudioSegment.from_file(file_path)
-            print(f"Audio loaded successfully: {file_path}")
-            print(f"Duration: {len(audio)} ms, Channels: {audio.channels}")
-        except Exception as e:
-            print(f"Error loading audio file: {e}")
+        print(f"Audio loaded successfully: {file_path}")
     else:
         print("No file selected.")
+        sys.exit(0)
+
+    # Transcribe the audio file
+    result = model.transcribe(file_path)
+    print("Transcribed text:", result["text"])
