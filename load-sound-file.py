@@ -5,7 +5,7 @@ import whisper
 
 
 # Load the Whisper model
-model = whisper.load_model("base") 
+model = whisper.load_model("medium")
 # Function to let the user select an audio file
 def select_audio_file():
     # Hide the root tkinter window
@@ -35,5 +35,5 @@ if __name__ == "__main__":
         sys.exit(0)
 
     # Transcribe the audio file
-    result = model.transcribe(file_path)
+    result = model.transcribe(file_path, language="ne")
     print("Transcribed text:", result["text"])
