@@ -5,7 +5,7 @@ import whisper
 
 
 # Load the Whisper model
-model = whisper.load_model("medium")
+model = whisper.load_model("large-v2")
 # Function to let the user select an audio file
 def select_audio_file():
     # Hide the root tkinter window
