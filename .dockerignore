@@ -7,4 +7,5 @@ test.py
 uploads
 __pycache__
 utils/__pycache__
+.gitignore
 *.log
