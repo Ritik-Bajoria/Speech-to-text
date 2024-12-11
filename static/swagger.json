@@ -44,20 +44,9 @@
             "description": "Successful responses",
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "metadata": {
-                      "language": "string",
-                      "transcribed_text": "string"
-                    }
-                  }
-                },
                 "example": {
-                  "value": {
-                    "language": "ne",
-                    "transcribed_text": "text in nepali"
-                  }
+                  "language": "ne",
+                  "transcribed_text": "text in nepali"
                 }
               }
             }
