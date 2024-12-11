@@ -1,0 +1,142 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Voice to text api",
+    "description": "API for transcribing vioce to text",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:5000",
+      "description": "Local server for development"
+    }
+  ],
+  "paths": {
+    "/api/transcribe": {
+      "post": {
+        "summary": "transcribe the voice or sound file to text",
+        "description": "Upload a sound file, and the API will transcribe the speech to text with high accuracy",
+        "tags": [
+          "Voice to text API"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Voice which is needed to be transcribed"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful responses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "metadata": {
+                      "language": "string",
+                      "transcribed_text": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "value": {
+                    "language": "ne",
+                    "transcribed_text": "text in nepali"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request (e.g., missing file or unsupported document type)",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "No file part": {
+                    "summary": "Example output for No file part",
+                    "value": {
+                      "error": true,
+                      "message": "No file part in the request"
+                    }
+                  },
+                  "No selected file": {
+                    "summary": "Example output for No selected file",
+                    "value": {
+                      "error": true,
+                      "message": "No selected file"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": true,
+                  "message": "Unauthorized access"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "URL not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": true,
+                  "message": "URL not found"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "method not allowed",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": true,
+                  "message": "method not allowed"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "X-API-KEY",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}
