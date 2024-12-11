@@ -3,9 +3,9 @@ myenv
 test.py
 *.wav
 *.mp3
-*.env
 uploads
 __pycache__
 utils/__pycache__
+./utils/load_file.py
 .gitignore
 *.log

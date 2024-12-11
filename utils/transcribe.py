@@ -2,7 +2,7 @@ import whisper
 import sys
 
 # Load the Whisper model
-model = whisper.load_model("tiny")
+model = whisper.load_model("large-v2")
 
 def get_transcribed_text(file_path):
     if file_path:

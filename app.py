@@ -3,7 +3,6 @@ import signal
 from flask import Flask, request, jsonify
 from flask_cors import CORS 
 from utils.logger import Logger
-from utils.load_file import select_audio_file
 from utils.transcribe import get_transcribed_text
 from flask_swagger_ui import get_swaggerui_blueprint
 import sys
